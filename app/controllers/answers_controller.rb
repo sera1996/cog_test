@@ -5,6 +5,7 @@ class AnswersController < ApplicationController
   # GET /answers.json
   def index
     @answers = Answer.all
+    #binding.pry
   end
 
   # GET /answers/1
@@ -26,11 +27,14 @@ class AnswersController < ApplicationController
   # POST /answers/new/1
   # POST /answers.json
   def create
-    @answer = Answer.new(answer_params)
+    @user = User.find(params[:id])
+    @answer = @user.answers.create(answer_params)
+    #binding.pry
+    #@answer = Answer.new(answer_params)
 
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
+        format.html { redirect_to user_new_answer_path(@user.id), notice: 'Answer was successfully created.' }
         format.json { render :show, status: :created, location: @answer }
       else
         format.html { render :new }
