@@ -11,6 +11,33 @@
     </div>
   <% end %>
 
+  <%= image_tag '/assets/gray.png', :size => "150x150",id:"picture1" %>
+  <%= image_tag '/assets/gray.png', :size => "150x150", id:"picture2" %>
+  <p id="hoge">aaa</p>
+  <p id ="2">bbb</p>
+
+  <script>
+        var rcount = 0;
+        var lcount = 0;
+
+        $("#picture1").click(function(){
+          lcount++;
+          if(lcount == 1){
+            $("#picture1").attr("src","/assets/A.png")
+          }
+          else{
+            $("#2").text("triggered")
+          }
+        
+          $("#hoge").text(lcount);
+        })
+        $("#picture2").click(function(){
+          $("#picture2").attr("src","/assets/B.png");
+          rcount++;
+
+        })
+  </script>
+
   <div class="actions">
     <%= form.submit %>
   </div>
