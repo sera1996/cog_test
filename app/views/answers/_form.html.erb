@@ -17,24 +17,68 @@
   <p id ="2">bbb</p>
 
   <script>
+        function checkStep2($lcount,$rcount,$a_or_b){
+          if($lcount > 1 && $rcount > 1){
+            stepCnt += 1 ;
+            lcount = 0;
+            rcount = 0;
+            $("#picture1").attr("src","/assets/gray.png");
+            $("#picture2").attr("src","/assets/gray.png");
+          }
+        }
+        function renderLPic($lcount){
+          if(stepCnt == 0){
+            if($lcount == 1){
+              $("#picture1").attr("src","/assets/A.png");
+            }
+            else {
+              $("#picture1").attr("src","/assets/white.png");
+              checkStep2(lcount,rcount);
+            }
+          }
+          else if(stepCnt == 1){
+            if(a_or_b == 0){
+              if($lcount == 1){
+                $("#picture1").attr("src","/assets/C.png");
+              }
+              else {
+                $("#picture1").attr("src","/assets/white.png");
+                checkStep2(lcount,rcount);
+              }
+            }
+          }
+
+        }
+        function renderRPic($rcount){
+          if(stepCnt == 0){
+            if($rcount == 1){
+              $("#picture2").attr("src","/assets/B.png");
+            }
+            else {
+              $("#picture2").attr("src","/assets/white.png");
+            }
+          }
+          else if(stepCnt == 1){
+            if($rcount == 1){
+              $("#picture2").attr("src","/assets/D.png");
+            }
+            else {
+              $("#picture2").attr("src","/assets/white.png");
+              checkStep2(lcount,rcount);
+            }
+          }
+        }
         var rcount = 0;
         var lcount = 0;
-
+        var a_or_b = 0;
+        var stepCnt = 0;
         $("#picture1").click(function(){
           lcount++;
-          if(lcount == 1){
-            $("#picture1").attr("src","/assets/A.png")
-          }
-          else{
-            $("#2").text("triggered")
-          }
-        
-          $("#hoge").text(lcount);
+          renderLPic(lcount);
         })
         $("#picture2").click(function(){
-          $("#picture2").attr("src","/assets/B.png");
           rcount++;
-
+          renderRPic(rcount);
         })
   </script>
 
