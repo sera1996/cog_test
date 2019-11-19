@@ -15,11 +15,15 @@
   <%= image_tag '/assets/gray.png', :size => "150x150", id:"picture2" %>
   <p id="hoge">aaa</p>
   <p id ="2">bbb</p>
+  <p id="lcount">0</p>
+  <p id ="rcount">0</p>
 
   <script>
     var lcount = 0;
     var rcount = 0;
     var stepCnt = 0;
+    var options = [];
+    var selected = 0;
     $(document).ready(function(){
       LoadPic(stepCnt);
     })
@@ -27,34 +31,74 @@
     $("#picture1").click(function(){
       renderPicL();
       lcount++;
+      $("#lcount").text(lcount);
+      $("#rcount").text(rcount);
     })
 
     $("#picture2").click(function(){
       renderPicR();
       rcount++;
+      $("#rcount").text(rcount);
+      $("#lcount").text(lcount);
     })
 
     function LoadPic($stepCnt){
-      var cards = ["A","B","C","D","E","F"].freeze;
+      var cards = ["A","B","C","D","E","F"];
       if($stepCnt == 0){
-        
+        options[0] = cards[0];
+        options[1] = cards[1];
+      }
+      else if($stepCnt == 1){
+        if(selected == 0){
+          options[0] = cards[2];
+          options[1] = cards[3];
+        }
+        else if(selected == 1){
+          options[0] = cards[4];
+          options[1] = cards[5];
+        }
       }
     }
 
     function renderPicL(){
       if(lcount == 0){
-        $("#picture1").attr("src","/assets/A.png")
+        $("#picture1").attr("src",`/assets/${options[0]}.png`)
       }
       else if(lcount == 1){
         $("#picture1").attr("src","/assets/white.png")
       }
+      else{
+        if(rcount > 1){
+          selected = 0;
+          stepCnt++;
+          LoadPic(stepCnt);
+          lcount = 0;
+          rcount = 0;
+          renderGray();
+        }
+      }
+    }
+    function renderGray(){
+      $("#picture1").attr("src","/assets/gray.png");
+      $("#picture2").attr("src","/assets/gray.png");
+
     }
     function renderPicR(){
       if(rcount == 0){
-        $("#picture2").attr("src","/assets/B.png")
+        $("#picture2").attr("src",`/assets/${options[1]}.png`)
       }
       else if(rcount == 1){
         $("#picture2").attr("src","/assets/white.png")
+      }
+      else{
+        if(lcount > 1){
+          selected = 1;
+          stepCnt++;
+          LoadPic(stepCnt);
+          lcount = 0;
+          rcount = 0;
+          renderGray();
+        }
       }
     }
   </script>
