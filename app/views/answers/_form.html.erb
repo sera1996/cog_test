@@ -10,50 +10,51 @@
       </ul>
     </div>
   <% end %>
-
+  <p id ="question">Eを選んでください</p>
   <%= image_tag '/assets/gray.png', :size => "150x150",id:"picture1" %>
   <%= image_tag '/assets/gray.png', :size => "150x150", id:"picture2" %>
-  <p id="hoge">aaa</p>
-  <p id ="2">bbb</p>
   <p id="lcount">0</p>
   <p id ="rcount">0</p>
 
   <script>
+    var cards = ["A","B","C","D","E","F"];
     var lcount = 0;
     var rcount = 0;
     var stepCnt = 0;
     var options = [];
     var selected = 0;
+    var answer;
     $(document).ready(function(){
       LoadPic(stepCnt);
+      answer = cards[Math.floor(Math.random()*4)+2];
+      $("#question").text(`${answer}を選んでください`);
     })
 
     $("#picture1").click(function(){
-      renderPicL();
       lcount++;
+      renderPicL();
       $("#lcount").text(lcount);
       $("#rcount").text(rcount);
     })
 
     $("#picture2").click(function(){
-      renderPicR();
       rcount++;
+      renderPicR();
       $("#rcount").text(rcount);
       $("#lcount").text(lcount);
     })
 
     function LoadPic($stepCnt){
-      var cards = ["A","B","C","D","E","F"];
       if($stepCnt == 0){
         options[0] = cards[0];
         options[1] = cards[1];
       }
       else if($stepCnt == 1){
-        if(selected == 0){
+        if(selected == "A"){
           options[0] = cards[2];
           options[1] = cards[3];
         }
-        else if(selected == 1){
+        else if(selected == "B"){
           options[0] = cards[4];
           options[1] = cards[5];
         }
@@ -61,15 +62,15 @@
     }
 
     function renderPicL(){
-      if(lcount == 0){
+      if(lcount == 1){
         $("#picture1").attr("src",`/assets/${options[0]}.png`)
       }
-      else if(lcount == 1){
+      else if(lcount == 2){
         $("#picture1").attr("src","/assets/white.png")
       }
       else{
         if(rcount > 1){
-          selected = 0;
+          selected = options[0];
           stepCnt++;
           LoadPic(stepCnt);
           lcount = 0;
@@ -84,15 +85,15 @@
 
     }
     function renderPicR(){
-      if(rcount == 0){
+      if(rcount == 1){
         $("#picture2").attr("src",`/assets/${options[1]}.png`)
       }
-      else if(rcount == 1){
+      else if(rcount == 2){
         $("#picture2").attr("src","/assets/white.png")
       }
       else{
         if(lcount > 1){
-          selected = 1;
+          selected = options[1];
           stepCnt++;
           LoadPic(stepCnt);
           lcount = 0;
