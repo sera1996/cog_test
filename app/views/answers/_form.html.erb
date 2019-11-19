@@ -17,69 +17,46 @@
   <p id ="2">bbb</p>
 
   <script>
-        function checkStep2($lcount,$rcount,$a_or_b){
-          if($lcount > 1 && $rcount > 1){
-            stepCnt += 1 ;
-            lcount = 0;
-            rcount = 0;
-            $("#picture1").attr("src","/assets/gray.png");
-            $("#picture2").attr("src","/assets/gray.png");
-          }
-        }
-        function renderLPic($lcount){
-          if(stepCnt == 0){
-            if($lcount == 1){
-              $("#picture1").attr("src","/assets/A.png");
-            }
-            else {
-              $("#picture1").attr("src","/assets/white.png");
-              checkStep2(lcount,rcount);
-            }
-          }
-          else if(stepCnt == 1){
-            if(a_or_b == 0){
-              if($lcount == 1){
-                $("#picture1").attr("src","/assets/C.png");
-              }
-              else {
-                $("#picture1").attr("src","/assets/white.png");
-                checkStep2(lcount,rcount);
-              }
-            }
-          }
+    var lcount = 0;
+    var rcount = 0;
+    var stepCnt = 0;
+    $(document).ready(function(){
+      LoadPic(stepCnt);
+    })
 
-        }
-        function renderRPic($rcount){
-          if(stepCnt == 0){
-            if($rcount == 1){
-              $("#picture2").attr("src","/assets/B.png");
-            }
-            else {
-              $("#picture2").attr("src","/assets/white.png");
-            }
-          }
-          else if(stepCnt == 1){
-            if($rcount == 1){
-              $("#picture2").attr("src","/assets/D.png");
-            }
-            else {
-              $("#picture2").attr("src","/assets/white.png");
-              checkStep2(lcount,rcount);
-            }
-          }
-        }
-        var rcount = 0;
-        var lcount = 0;
-        var a_or_b = 0;
-        var stepCnt = 0;
-        $("#picture1").click(function(){
-          lcount++;
-          renderLPic(lcount);
-        })
-        $("#picture2").click(function(){
-          rcount++;
-          renderRPic(rcount);
-        })
+    $("#picture1").click(function(){
+      renderPicL();
+      lcount++;
+    })
+
+    $("#picture2").click(function(){
+      renderPicR();
+      rcount++;
+    })
+
+    function LoadPic($stepCnt){
+      var cards = ["A","B","C","D","E","F"].freeze;
+      if($stepCnt == 0){
+        
+      }
+    }
+
+    function renderPicL(){
+      if(lcount == 0){
+        $("#picture1").attr("src","/assets/A.png")
+      }
+      else if(lcount == 1){
+        $("#picture1").attr("src","/assets/white.png")
+      }
+    }
+    function renderPicR(){
+      if(rcount == 0){
+        $("#picture2").attr("src","/assets/B.png")
+      }
+      else if(rcount == 1){
+        $("#picture2").attr("src","/assets/white.png")
+      }
+    }
   </script>
 
   <div class="actions">
