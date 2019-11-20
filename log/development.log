@@ -8986,3 +8986,179 @@ Processing by AnswersController#new as HTML
 Completed 200 OK in 66ms (Views: 61.5ms | ActiveRecord: 0.2ms)
 
 
+Started GET "/answers/new/1" for ::1 at 2019-11-19 22:42:10 +0900
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:19
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form.html.erb (3.8ms)
+  Rendered answers/new.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 113ms (Views: 106.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/answers/new/1" for ::1 at 2019-11-19 22:42:16 +0900
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:19
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form.html.erb (3.4ms)
+  Rendered answers/new.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 67ms (Views: 63.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/answers/new/1" for ::1 at 2019-11-19 22:42:27 +0900
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:19
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form.html.erb (7.5ms)
+  Rendered answers/new.html.erb within layouts/application (15.1ms)
+Completed 200 OK in 200ms (Views: 191.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/answers/new/1" for ::1 at 2019-11-19 22:42:30 +0900
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:19
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form.html.erb (7.4ms)
+  Rendered answers/new.html.erb within layouts/application (11.8ms)
+Completed 200 OK in 72ms (Views: 68.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/answers/new/1" for ::1 at 2019-11-19 22:42:31 +0900
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:19
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form.html.erb (3.2ms)
+  Rendered answers/new.html.erb within layouts/application (7.2ms)
+Completed 200 OK in 74ms (Views: 69.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/answers/new/1" for ::1 at 2019-11-19 22:42:31 +0900
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:19
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form.html.erb (3.8ms)
+  Rendered answers/new.html.erb within layouts/application (7.7ms)
+Completed 200 OK in 63ms (Views: 59.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/answers/new/1" for ::1 at 2019-11-19 22:42:32 +0900
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:19
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form.html.erb (3.6ms)
+  Rendered answers/new.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 56ms (Views: 52.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/answers/new/1" for ::1 at 2019-11-19 22:42:32 +0900
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:19
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form.html.erb (3.0ms)
+  Rendered answers/new.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 55ms (Views: 51.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/answers/new/1" for ::1 at 2019-11-19 22:42:33 +0900
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:19
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form.html.erb (3.9ms)
+  Rendered answers/new.html.erb within layouts/application (7.7ms)
+Completed 200 OK in 59ms (Views: 56.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/answers/new/1" for ::1 at 2019-11-19 22:42:33 +0900
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:19
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form.html.erb (4.8ms)
+  Rendered answers/new.html.erb within layouts/application (9.2ms)
+Completed 200 OK in 55ms (Views: 51.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/answers/new/1" for ::1 at 2019-11-19 22:42:34 +0900
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:19
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form.html.erb (2.4ms)
+  Rendered answers/new.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 52ms (Views: 48.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/answers/new/1" for ::1 at 2019-11-19 22:42:34 +0900
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:19
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form.html.erb (4.0ms)
+  Rendered answers/new.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 55ms (Views: 49.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/answers/new/1" for ::1 at 2019-11-19 22:42:49 +0900
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:19
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form.html.erb (3.2ms)
+  Rendered answers/new.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 96ms (Views: 91.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/answers/new/1" for ::1 at 2019-11-19 22:42:50 +0900
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:19
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form.html.erb (3.0ms)
+  Rendered answers/new.html.erb within layouts/application (8.1ms)
+Completed 200 OK in 72ms (Views: 68.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/answers/new/1" for ::1 at 2019-11-19 22:42:50 +0900
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:19
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form.html.erb (2.4ms)
+  Rendered answers/new.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 44ms (Views: 41.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/answers/new/1" for ::1 at 2019-11-19 22:42:51 +0900
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:19
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form.html.erb (3.4ms)
+  Rendered answers/new.html.erb within layouts/application (6.3ms)
+Completed 200 OK in 41ms (Views: 36.7ms | ActiveRecord: 0.2ms)
+
+
