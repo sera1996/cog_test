@@ -1,4 +1,6 @@
 <p id="notice"><%= notice %></p>
-
+<p><%= @answer.user_id %></p>
+<p><%= @answer.created_at %></p>
+<p><%= @answer.result %></p>
 <%= link_to 'Edit', edit_answer_path(@answer) %> |
 <%= link_to 'Back', users_path %>

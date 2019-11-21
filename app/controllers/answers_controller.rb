@@ -11,6 +11,8 @@ class AnswersController < ApplicationController
   # GET /answers/1
   # GET /answers/1.json
   def show
+    @answer = Answer.find(params[:id])
+    #binding.pry
   end
 
   # GET /answers/new
@@ -31,10 +33,11 @@ class AnswersController < ApplicationController
     @answer = @user.answers.create(answer_params)
     #binding.pry
     #@answer = Answer.new(answer_params)
-
+    next_ans = @user.answers.last.ansnum
+    #binding.pry
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to user_new_answer_path(@user.id), notice: 'Answer was successfully created.' }
+        format.html { redirect_to user_new_answer_path(@user.id,ansnum:next_ans+1), notice: 'Answer was successfully created.' }
         format.json { render :show, status: :created, location: @answer }
       else
         format.html { render :new }
@@ -42,7 +45,7 @@ class AnswersController < ApplicationController
       end
     end
   end
-
+ 
   # PATCH/PUT /answers/1
   # PATCH/PUT /answers/1.json
   def update
@@ -77,6 +80,6 @@ class AnswersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
-      params.fetch(:answer, {})
+      params.permit(:result,:ansnum)
     end
 end

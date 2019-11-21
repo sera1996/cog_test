@@ -1,4 +1,4 @@
-<%= form_with(url: user_create_answer_path(@user.id),model: answer,local: true) do |form| %>
+<%= form_with(url: user_create_answer_path(@user.id,result: true),model: answer,local: true) do |form| %>
   <% if answer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
@@ -17,6 +17,8 @@
   <p id ="rcount">0</p>
   <p id = "rnd">rnd</p>
   <p id = "result">result</p>
+  <p id = "submit">submit</p>
+
 
   <script>
     var cards = ["A","B","C","D","E","F"];
@@ -28,6 +30,9 @@
     var answer;
     var rndOpt;
     var othrOpt;
+    $("#submit").click(function(){
+      $("#result").closest("form").submit();
+    })
     function returnRndIdx(){
       rndOpt = Math.floor(Math.random()*2);
       if(rndOpt == 0){
