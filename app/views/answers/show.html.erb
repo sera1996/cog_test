@@ -1,5 +1,18 @@
 <p id="notice"><%= notice %></p>
-<p><%= @answer.user_id %></p>
+<tr>
+    <td><%= @user.last_name %></td>
+    <td><%= @user.first_name %></td>
+</tr>
+<br>
+<tr>
+    <th>ユーザーID: </th>
+    <td><%= @answer.user_id %></td>
+</tr>
+<br>
+<tr>
+    <th>回答番号</th>
+    <td><%= @answer.ansnum %></td>
+</tr>
 <p><%= @answer.created_at %></p>
 <p><%= @answer.result %></p>
 <%= link_to 'Edit', edit_answer_path(@answer) %> |

@@ -12,6 +12,7 @@ class AnswersController < ApplicationController
   # GET /answers/1.json
   def show
     @answer = Answer.find(params[:id])
+    @user = User.find(@answer.user_id)
     #binding.pry
   end
 
@@ -19,6 +20,7 @@ class AnswersController < ApplicationController
   def new
     @answer = Answer.new
     @user = User.find(params[:id])
+    @user.answers.last.nil? ? @ansnum = 1 : @ansnum = @user.answers.last.ansnum
     #binding.pry
   end
 
