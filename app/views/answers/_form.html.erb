@@ -35,10 +35,7 @@
     var result = false;
     var user_id;
     var ansnum;
-    $("#submit").click(function(){
-      $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}`);
-      window.location.replace(`http://localhost:3000/answers/new/${user_id}/${ansnum+1}`);
-    })
+
     function returnRndIdx(){
       rndOpt = Math.floor(Math.random()*2);
       if(rndOpt == 0){
@@ -93,10 +90,14 @@
         if($selected == answer){
           $("#result").text("correct");
           result = true;
+          $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}`);
+          window.location.replace(`http://localhost:3000/answers/new/${user_id}/${ansnum+1}`);
         }
         else{
           $("#result").text("wrong");
           result = false;
+          $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}`);
+          window.location.replace(`http://localhost:3000/answers/new/${user_id}/${ansnum+1}`);
         }
       }
     }

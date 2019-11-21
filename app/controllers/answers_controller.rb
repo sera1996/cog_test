@@ -20,7 +20,7 @@ class AnswersController < ApplicationController
   def new
     @answer = Answer.new
     @user = User.find(params[:id])
-    @user.answers.last.nil? ? @ansnum = 1 : @ansnum = @user.answers.last.ansnum
+    @user.answers.last.nil? ? @ansnum = 0 : @ansnum = @user.answers.last.ansnum
     #binding.pry
   end
 
