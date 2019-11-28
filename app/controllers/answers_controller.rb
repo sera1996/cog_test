@@ -72,6 +72,10 @@ class AnswersController < ApplicationController
     end
   end
 
+  def user_answer
+    @user = User.find(params[:user_id])
+    @answers = @user.answers.all
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_answer

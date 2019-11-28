@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+<tr>
+    <td><%= @user.last_name %></td>
+    <td><%= @user.first_name %></td>
+</tr>
+<br>
+<p style="display: inline;">ユーザーID</p>
+<% unless @answers.first.nil? %>
+    <p style="display: inline;"><%= @answers.first.user_id%></p>
+<% end %>
+
+<% @answers.each do |answer| %>
+    <p>
+        <tr>
+            <td>回答番号</td>
+            <td><%= answer.ansnum %></td>
+            <td><%= answer.result %></td>
+        </tr>
+    </p>
+<% end %>
+
+
