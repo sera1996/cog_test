@@ -1,0 +1,195 @@
+<%= form_with(url: user_create_answer_path(@user.id,result: true),model: answer,local: true, html:{id:"form"}) do |form| %>
+  <% if answer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
+
+      <ul>
+      <% answer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p id ="question">を選んでください</p>
+  <%= image_tag '/assets/gray.png', :size => "150x150",id:"picture1" %>
+  <%= image_tag '/assets/gray.png', :size => "150x150", id:"picture2" %>
+  <%= image_tag '/assets/gray.png', :size => "150x150", id:"picture3" %>
+  <p id="lcount">0</p>
+  <p id ="mcount">0</p>
+  <p id ="rcount">0</p>
+
+
+  <p id = "rnd">rnd</p>
+  <p id = "result">result odd page</p>
+  <p id = "submit">submit</p>
+  <p hidden id="user_id"><%= @user.id %></p>
+  <p hidden id = "ansnum"><%= @ansnum%></p>
+
+
+  <script>
+    var cards = ["1","2","3","4","5","6","7","8","9","10","11","12"];
+    var lcount = 0;
+    var mcount = 0;
+    var rcount = 0;
+    var stepCnt = 0;
+    var options = [];
+    var selected = 0;
+    var answer;
+    var rndOpt;
+    var othrOpt;
+    var result = false;
+    var user_id;
+    var ansnum;
+
+    function returnRndIdx(){
+      rndOpt = Math.floor(Math.random()*3);
+      if(rndOpt == 0){
+        othrOpt = 1;
+      }
+      else if(rndOpt == 1){
+        othrOpt = 0;
+      }
+      $("#rnd").text(`${rndOpt}`+`${othrOpt}`);
+    }
+    $(document).ready(function(){
+      user_id = $("#user_id").text();
+      ansnum = Number($("#ansnum").text())+1;
+      LoadPic(stepCnt);
+      answer = cards[Math.floor(Math.random()*4)+2];
+      $("#question").text(`${answer}を選んでください`);
+    })
+
+    $("#picture1").click(function(){
+      lcount++;
+      renderPicL();
+      $("#lcount").text(lcount);
+      $("#rcount").text(rcount);
+      $("#mcount").text(mcount);
+    })
+    $("#picture2").click(function(){
+      mcount++;
+      renderPicM();
+      $("#rcount").text(rcount);
+      $("#lcount").text(lcount);
+      $("#mcount").text(mcount);
+    })
+    $("#picture3").click(function(){
+      rcount++;
+      renderPicR();
+      $("#rcount").text(rcount);
+      $("#lcount").text(lcount);
+      $("#mcount").text(mcount);
+    })
+
+    function LoadPic($stepCnt){
+      returnRndIdx();
+      if($stepCnt == 0){
+        options[0] = cards[0];
+        options[1] = cards[1];
+        options[2] = cards[2];
+      }
+      else if($stepCnt == 1){
+        if(selected == "1"){
+          options[0] = cards[3];
+          options[1] = cards[4];
+          options[2] = cards[5];
+        }
+        else if(selected == "2"){
+          options[0] = cards[6];
+          options[1] = cards[7];
+          options[2] = cards[8];
+        }
+        else if(selected == "3"){
+          options[0] = cards[9];
+          options[1] = cards[10];
+          options[2] = cards[11];
+        }
+      }
+    }
+    function checkEnd($selected){
+      if(stepCnt == 2){
+        if($selected == answer){
+          $("#result").text("correct");
+          result = true;
+          $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}`);
+          window.location.replace(`http://localhost:3000/answers/new/${user_id}/${ansnum+1}`);
+        }
+        else{
+          $("#result").text("wrong");
+          result = false;
+          $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}`);
+          window.location.replace(`http://localhost:3000/answers/new/${user_id}/${ansnum+1}`);
+        }
+      }
+    }
+    function renderPicL(){
+      if(lcount == 1){
+        $("#picture1").attr("src",`/assets/${options[0]}.png`)
+      }
+      else if(lcount == 2){
+        $("#picture1").attr("src","/assets/white.png")
+      }
+      else{
+        if(rcount > 1 && mcount >1){
+          selected = options[0];
+          stepCnt++;
+          checkEnd(selected);
+          LoadPic(stepCnt);
+          lcount = 0;
+          rcount = 0;
+          mcount = 0;
+          renderGray();
+        }
+      }
+    }
+    function renderPicM(){
+      if(mcount == 1){
+        $("#picture2").attr("src",`/assets/${options[1]}.png`)
+      }
+      else if(mcount == 2){
+        $("#picture2").attr("src","/assets/white.png")
+      }
+      else{
+        if(lcount > 1 && rcount > 1){
+          selected = options[1];
+          stepCnt++;
+          checkEnd(selected);
+          LoadPic(stepCnt);
+          lcount = 0;
+          rcount = 0;
+          mcount = 0;
+          renderGray();
+        }
+      }
+    }
+    function renderPicR(){
+      if(rcount == 1){
+        $("#picture3").attr("src",`/assets/${options[2]}.png`)
+      }
+      else if(rcount == 2){
+        $("#picture3").attr("src","/assets/white.png")
+      }
+      else{
+        if(lcount > 1 && mcount > 1){
+          selected = options[1];
+          stepCnt++;
+          checkEnd(selected);
+          LoadPic(stepCnt);
+          lcount = 0;
+          rcount = 0;
+          mcount = 0;
+          renderGray();
+        }
+      }
+    }
+    function renderGray(){
+      $("#picture1").attr("src","/assets/gray.png");
+      $("#picture2").attr("src","/assets/gray.png");
+      $("#picture3").attr("src","/assets/gray.png");
+    }
+  </script>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
