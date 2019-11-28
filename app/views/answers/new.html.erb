@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+<h1>新規回答</h1>
+
+<% if params[:ansnum].to_i % 3 == 1 %>
+    <%= render 'form', answer: @answer %>
+<% else %>
+    <%= render 'form2', answer: @answer %>
+<% end %>
+
+<%= link_to 'Back', answers_path %>
