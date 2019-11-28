@@ -11,6 +11,11 @@
     </div>
   <% end %>
   <p id ="question">を選んでください</p>
+  <div>
+    <%= image_tag '/assets/gray.png', :size => "20x20",id:"questionimg" %>
+    <p style="display: inline;">を選んでください</p>
+  </div>
+
   <%= image_tag '/assets/gray.png', :size => "150x150",id:"picture1" %>
   <%= image_tag '/assets/gray.png', :size => "150x150", id:"picture2" %>
   <%= image_tag '/assets/gray.png', :size => "150x150", id:"picture3" %>
@@ -35,28 +40,25 @@
     var options = [];
     var selected = 0;
     var answer;
-    var rndOpt;
-    var othrOpt;
+    var opts = [0,1,2]
     var result = false;
     var user_id;
     var ansnum;
 
     function returnRndIdx(){
-      rndOpt = Math.floor(Math.random()*3);
-      if(rndOpt == 0){
-        othrOpt = 1;
+      for(var i = opts.length -1 ; i > 0; i--){
+        const j = Math.floor(Math.random()*(i + 1));
+        [opts[i],opts[j]] = [opts[j],opts[i]];
       }
-      else if(rndOpt == 1){
-        othrOpt = 0;
-      }
-      $("#rnd").text(`${rndOpt}`+`${othrOpt}`);
+      $("#rnd").text(`${opts}`);
     }
     $(document).ready(function(){
       user_id = $("#user_id").text();
       ansnum = Number($("#ansnum").text())+1;
       LoadPic(stepCnt);
-      answer = cards[Math.floor(Math.random()*4)+2];
-      $("#question").text(`${answer}を選んでください`);
+      answer = cards[Math.floor(Math.random()*9)+3];
+      $("#questionimg").attr("src",`/assets/${answer}.png`)
+      returnRndIdx();
     })
 
     $("#picture1").click(function(){
@@ -84,25 +86,25 @@
     function LoadPic($stepCnt){
       returnRndIdx();
       if($stepCnt == 0){
-        options[0] = cards[0];
-        options[1] = cards[1];
-        options[2] = cards[2];
+        options[opts[0]] = cards[0];
+        options[opts[1]] = cards[1];
+        options[opts[2]] = cards[2];
       }
       else if($stepCnt == 1){
         if(selected == "1"){
-          options[0] = cards[3];
-          options[1] = cards[4];
-          options[2] = cards[5];
+          options[opts[0]] = cards[3];
+          options[opts[1]] = cards[4];
+          options[opts[2]] = cards[5];
         }
         else if(selected == "2"){
-          options[0] = cards[6];
-          options[1] = cards[7];
-          options[2] = cards[8];
+          options[opts[0]] = cards[6];
+          options[opts[1]] = cards[7];
+          options[opts[2]] = cards[8];
         }
         else if(selected == "3"){
-          options[0] = cards[9];
-          options[1] = cards[10];
-          options[2] = cards[11];
+          options[opts[0]] = cards[9];
+          options[opts[1]] = cards[10];
+          options[opts[2]] = cards[11];
         }
       }
     }
