@@ -14,7 +14,12 @@
         <tr>
             <td>回答番号</td>
             <td><%= answer.ansnum %></td>
-            <td><%= answer.result %></td>
+            <td><% if answer.result == true %>
+                    ◯
+                <% elsif answer.result == false %>
+                    ×
+                <% end %>
+            </td>
         </tr>
     </p>
 <% end %>

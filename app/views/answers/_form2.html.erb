@@ -37,7 +37,7 @@
     var result = false;
     var user_id;
     var ansnum;
-
+    var attempt = 0;
     function returnRndIdx(){
       for(var i = opts.length -1 ; i > 0; i--){
         const j = Math.floor(Math.random()*(i + 1));
@@ -95,16 +95,27 @@
     function checkEnd($selected){
       if(stepCnt == 2){
         if($selected == answer){
+          if(attempt == 0){
           $("#result").text("correct");
-          result = true;
-          $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}`);
-          window.location.replace(`http://localhost:3000/answers/new/${user_id}/${ansnum+1}`);
+            result = true;
+            $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}`);
+            window.location.replace(`http://localhost:3000/answers/new/${user_id}/${ansnum+1}`);  
+          }
+          else{
+            result =false;
+            $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}`);
+            window.location.replace(`http://localhost:3000/answers/new/${user_id}/${ansnum+1}`);  
+          }
         }
         else{
-          $("#result").text("wrong");
+          attempt++;
+          $("#result").text("間違えました。正解を見つけて選べば次に進めます");
           result = false;
-          $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}`);
-          window.location.replace(`http://localhost:3000/answers/new/${user_id}/${ansnum+1}`);
+          stepCnt = 0;
+          LoadPic(stepCnt);
+          lcount = 0;
+          rcount = 0;
+          mcount = 0;
         }
       }
     }
