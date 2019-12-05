@@ -21,6 +21,15 @@ class AnswersController < ApplicationController
     @answer = Answer.new
     @user = User.find(params[:id])
     @user.answers.last.nil? ? @ansnum = 0 : @ansnum = @user.answers.last.ansnum
+    case @user.student_id%3
+    when 0
+      @test_type = "A"
+    when 1
+      @test_type = "B"
+    when 2
+      @test_type = "C"
+    end
+
     #if @user.answers.last.ansnum == 42
     #  redirect_to user_answer_url(params[:id])
     #end

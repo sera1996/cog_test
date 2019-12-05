@@ -9,6 +9,8 @@
       <th>名前</th>
       <th>学年</th>
       <th>性別</th>
+      <th>テスト方式</th>
+      <th>学籍番号</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,6 +22,20 @@
         <td><%= user.first_name %></td>
         <td><%= user.grade %></td>
         <td><%= user.gender %></td>
+        <td>
+        <% unless user.student_id.nil? %>
+          <% if user.student_id.to_i % 3==0 %>
+            A
+          <% elsif user.student_id.to_i % 3 == 1 %>
+            B
+          <% elsif user.student_id.to_i % 3 == 2 %>
+            C
+          <% end %>
+        <% else %>
+          nil
+        <% end %>
+        </td>
+        <td><%= user.student_id %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

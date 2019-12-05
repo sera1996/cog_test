@@ -25,6 +25,12 @@
     <%= form.label :学年 %>
     <%= form.number_field :grade %>
   </div>
+
+  <div class="field">
+    <%= form.label :学籍番号 %>
+    <%= form.number_field :student_id %>
+  </div>
+  
   <div class="field">
       <%= form.radio_button :gender, :男性 %>
       <%= form.label :gender, "男性", {value: :male, style: "display: inline-block;"} %>

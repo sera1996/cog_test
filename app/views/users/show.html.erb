@@ -1,23 +1,28 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>First name:</strong>
+  <strong>名前:</strong>
   <%= @user.first_name %>
 </p>
 
 <p>
-  <strong>Last name:</strong>
+  <strong>名字:</strong>
   <%= @user.last_name %>
 </p>
 
 <p>
-  <strong>Grade:</strong>
+  <strong>学年:</strong>
   <%= @user.grade %>
 </p>
 
 <p>
-  <strong>Gender:</strong>
+  <strong>性別:</strong>
   <%= @user.gender %>
+</p>
+
+<p>
+  <strong>学籍番号:</strong>
+  <%= @user.student_id %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
