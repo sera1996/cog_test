@@ -36708,3 +36708,736 @@ Processing by AnswersController#new as HTML
 Completed 200 OK in 51ms (Views: 44.8ms | ActiveRecord: 0.3ms)
 
 
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ vendor/bundle/ruby/2.3.0/bin/rake:23
+Migrating to AddScoring (20191205114636)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ vendor/bundle/ruby/2.3.0/bin/rake:23
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "users" ADD "score" integer[0m
+  ↳ db/migrate/20191205114636_add_scoring.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20191205114636"]]
+  ↳ vendor/bundle/ruby/2.3.0/bin/rake:23
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ vendor/bundle/ruby/2.3.0/bin/rake:23
+Migrating to SetScoreDefault (20191205115625)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ vendor/bundle/ruby/2.3.0/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/migrate/20191205115625_set_score_default.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "ausers" ("id" integer NOT NULL PRIMARY KEY, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "grade" integer DEFAULT NULL, "gender" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "student_id" integer DEFAULT NULL, "score" integer DEFAULT NULL)[0m
+  ↳ db/migrate/20191205115625_set_score_default.rb:3
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "ausers" ("id","first_name","last_name","grade","gender","created_at","updated_at","student_id","score")
+                     SELECT "id","first_name","last_name","grade","gender","created_at","updated_at","student_id","score" FROM "users"[0m
+  ↳ db/migrate/20191205115625_set_score_default.rb:3
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "users"[0m
+  ↳ db/migrate/20191205115625_set_score_default.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer NOT NULL PRIMARY KEY, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "grade" integer DEFAULT NULL, "gender" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "student_id" integer DEFAULT NULL, "score" integer DEFAULT 0)[0m
+  ↳ db/migrate/20191205115625_set_score_default.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "users" ("id","first_name","last_name","grade","gender","created_at","updated_at","student_id","score")
+                     SELECT "id","first_name","last_name","grade","gender","created_at","updated_at","student_id","score" FROM "ausers"[0m
+  ↳ db/migrate/20191205115625_set_score_default.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "ausers"[0m
+  ↳ db/migrate/20191205115625_set_score_default.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20191205115625"]]
+  ↳ vendor/bundle/ruby/2.3.0/bin/rake:23
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ vendor/bundle/ruby/2.3.0/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ vendor/bundle/ruby/2.3.0/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ vendor/bundle/ruby/2.3.0/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ vendor/bundle/ruby/2.3.0/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ vendor/bundle/ruby/2.3.0/bin/rake:23
+Started GET "/users" for ::1 at 2019-12-06 03:24:31 +0900
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ vendor/bundle/ruby/2.3.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:19
+  Rendered users/index.html.erb within layouts/application (71.8ms)
+Completed 200 OK in 581ms (Views: 564.0ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/answers/user_answer/5" for ::1 at 2019-12-06 03:24:47 +0900
+Processing by AnswersController#user_answer as HTML
+  Parameters: {"user_id"=>"5"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:88
+  Rendering answers/user_answer.html.erb within layouts/application
+  [1m[36mAnswer Load (0.6ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" ASC LIMIT ?[0m  [["user_id", 5], ["LIMIT", 1]]
+  ↳ app/views/answers/user_answer.html.erb:8
+  [1m[36mAnswer Load (0.9ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."user_id" = ?[0m  [["user_id", 5]]
+  ↳ app/views/answers/user_answer.html.erb:12
+  Rendered answers/user_answer.html.erb within layouts/application (97.0ms)
+Completed 200 OK in 242ms (Views: 154.4ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/users/new" for ::1 at 2019-12-06 03:24:52 +0900
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/_form.html.erb (207.7ms)
+  Rendered users/new.html.erb within layouts/application (211.9ms)
+Completed 200 OK in 279ms (Views: 275.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2019-12-06 03:25:03 +0900
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"cle61oZDdTc+sJ+d0DAgEEHy6WHZS9faIV6Do5pjz2Ao8SeVSdYmqzJLX1xqaLyhv9zCsnZG7uuJvm/slNyLQw==", "user"=>{"last_name"=>"1", "first_name"=>"2", "grade"=>"3", "student_id"=>"71646427", "gender"=>"男性"}, "commit"=>"Create User"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:31
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "grade", "gender", "created_at", "updated_at", "student_id") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "2"], ["last_name", "1"], ["grade", 3], ["gender", "男性"], ["created_at", "2019-12-05 18:25:03.428549"], ["updated_at", "2019-12-05 18:25:03.428549"], ["student_id", 71646427]]
+  ↳ app/controllers/users_controller.rb:31
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:31
+Redirected to http://localhost:3000/users/12
+Completed 302 Found in 15ms (ActiveRecord: 2.6ms)
+
+
+Started GET "/users/12" for ::1 at 2019-12-06 03:25:03 +0900
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"12"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:68
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 105ms (Views: 100.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users" for ::1 at 2019-12-06 03:25:05 +0900
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:19
+  Rendered users/index.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 79ms (Views: 73.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/answers/new/12/1" for ::1 at 2019-12-06 03:25:08 +0900
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"12", "ansnum"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:22
+  [1m[36mAnswer Load (1.4ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:23
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form.html.erb (6.2ms)
+  Rendered answers/new.html.erb within layouts/application (12.5ms)
+Completed 200 OK in 68ms (Views: 58.6ms | ActiveRecord: 1.8ms)
+
+
+Started POST "/answers/new/12/1/false" for ::1 at 2019-12-06 03:25:17 +0900
+Processing by AnswersController#create as */*
+  Parameters: {"id"=>"12", "ansnum"=>"1", "result"=>"false"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:46
+Unpermitted parameter: :id
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/answers_controller.rb:47
+  [1m[36mAnswer Create (1.2ms)[0m  [1m[32mINSERT INTO "answers" ("created_at", "updated_at", "user_id", "result", "ansnum") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2019-12-05 18:25:17.228799"], ["updated_at", "2019-12-05 18:25:17.228799"], ["user_id", 12], ["result", 0], ["ansnum", 1]]
+  ↳ app/controllers/answers_controller.rb:47
+  [1m[35m (2.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/answers_controller.rb:47
+Started GET "/answers/new/12/2" for ::1 at 2019-12-06 03:25:17 +0900
+  [1m[36mAnswer Load (0.3ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"12", "ansnum"=>"2"}
+  ↳ app/controllers/answers_controller.rb:50
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:22
+  [1m[36mAnswer Load (0.3ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:23
+  [1m[36mCACHE Answer Load (0.0ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:23
+  ↳ app/controllers/answers_controller.rb:53
+  Rendering answers/new.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/answers_controller.rb:53
+Redirected to http://localhost:3000/answers/new/12/2
+  Rendered answers/_form2.html.erb (3.3ms)
+Completed 302 Found in 58ms (ActiveRecord: 4.4ms)
+
+
+  Rendered answers/new.html.erb within layouts/application (10.9ms)
+Started GET "/answers/new/12/2" for ::1 at 2019-12-06 03:25:17 +0900
+Processing by AnswersController#new as */*
+  Parameters: {"id"=>"12", "ansnum"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:22
+  [1m[36mAnswer Load (0.8ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:23
+  [1m[36mCACHE Answer Load (0.0ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:23
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form2.html.erb (2.4ms)
+  Rendered answers/new.html.erb within layouts/application (35.0ms)
+Completed 200 OK in 181ms (Views: 170.3ms | ActiveRecord: 0.6ms)
+
+
+Completed 200 OK in 383ms (Views: 331.1ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/answers/new/12/2/true" for ::1 at 2019-12-06 03:25:39 +0900
+Processing by AnswersController#create as */*
+  Parameters: {"id"=>"12", "ansnum"=>"2", "result"=>"true"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:46
+Unpermitted parameter: :id
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/answers_controller.rb:47
+  [1m[36mAnswer Create (2.5ms)[0m  [1m[32mINSERT INTO "answers" ("created_at", "updated_at", "user_id", "result", "ansnum") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2019-12-05 18:25:39.912853"], ["updated_at", "2019-12-05 18:25:39.912853"], ["user_id", 12], ["result", 1], ["ansnum", 2]]
+  ↳ app/controllers/answers_controller.rb:47
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/answers_controller.rb:47
+  [1m[36mAnswer Load (0.8ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:50
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/answers_controller.rb:53
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/answers_controller.rb:53
+Redirected to http://localhost:3000/answers/new/12/3
+Completed 302 Found in 30ms (ActiveRecord: 9.0ms)
+
+
+Started GET "/answers/new/12/3" for ::1 at 2019-12-06 03:25:39 +0900
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"12", "ansnum"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:22
+  [1m[36mAnswer Load (0.3ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:23
+  [1m[36mCACHE Answer Load (0.0ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:23
+Started GET "/answers/new/12/3" for ::1 at 2019-12-06 03:25:39 +0900
+Processing by AnswersController#new as */*
+  Parameters: {"id"=>"12", "ansnum"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  Rendering answers/new.html.erb within layouts/application
+  ↳ app/controllers/answers_controller.rb:22
+  [1m[36mAnswer Load (0.1ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  Rendered answers/_form2.html.erb (3.7ms)
+  ↳ app/controllers/answers_controller.rb:23
+  Rendered answers/new.html.erb within layouts/application (8.6ms)
+  [1m[36mCACHE Answer Load (0.0ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:23
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form2.html.erb (2.5ms)
+  Rendered answers/new.html.erb within layouts/application (32.4ms)
+Completed 200 OK in 193ms (Views: 179.1ms | ActiveRecord: 0.5ms)
+
+
+Completed 200 OK in 180ms (Views: 135.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/answers/user_answer/6" for ::1 at 2019-12-06 03:25:46 +0900
+Processing by AnswersController#user_answer as HTML
+  Parameters: {"user_id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:88
+Completed 404 Not Found in 3ms (ActiveRecord: 0.2ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=6):
+  
+app/controllers/answers_controller.rb:88:in `user_answer'
+Started GET "/answers/user_answer/12" for ::1 at 2019-12-06 03:25:58 +0900
+Processing by AnswersController#user_answer as HTML
+  Parameters: {"user_id"=>"12"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:88
+  Rendering answers/user_answer.html.erb within layouts/application
+  [1m[36mAnswer Load (0.8ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" ASC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/views/answers/user_answer.html.erb:8
+  [1m[36mAnswer Load (0.3ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."user_id" = ?[0m  [["user_id", 12]]
+  ↳ app/views/answers/user_answer.html.erb:12
+  Rendered answers/user_answer.html.erb within layouts/application (6.4ms)
+Completed 200 OK in 72ms (Views: 65.5ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/answers/new/12/3/true" for ::1 at 2019-12-06 03:26:25 +0900
+Processing by AnswersController#create as */*
+  Parameters: {"id"=>"12", "ansnum"=>"3", "result"=>"true"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:46
+Unpermitted parameter: :id
+  [1m[35m (1.7ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/answers_controller.rb:47
+  [1m[36mAnswer Create (1.4ms)[0m  [1m[32mINSERT INTO "answers" ("created_at", "updated_at", "user_id", "result", "ansnum") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2019-12-05 18:26:25.552110"], ["updated_at", "2019-12-05 18:26:25.552110"], ["user_id", 12], ["result", 1], ["ansnum", 3]]
+  ↳ app/controllers/answers_controller.rb:47
+Started GET "/answers/new/12/4" for ::1 at 2019-12-06 03:26:25 +0900
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/answers_controller.rb:47
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"12", "ansnum"=>"4"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:22
+  [1m[36mAnswer Load (0.3ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:50
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/answers_controller.rb:53
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/answers_controller.rb:53
+  [1m[36mAnswer Load (0.4ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:23
+  [1m[36mCACHE Answer Load (0.0ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:23
+Redirected to http://localhost:3000/answers/new/12/4
+  Rendering answers/new.html.erb within layouts/application
+Completed 302 Found in 51ms (ActiveRecord: 5.9ms)
+
+
+  Rendered answers/_form.html.erb (3.3ms)
+Started GET "/answers/new/12/4" for ::1 at 2019-12-06 03:26:25 +0900
+  Rendered answers/new.html.erb within layouts/application (11.6ms)
+Processing by AnswersController#new as */*
+  Parameters: {"id"=>"12", "ansnum"=>"4"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:22
+  [1m[36mAnswer Load (0.2ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:23
+  [1m[36mCACHE Answer Load (0.0ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:23
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form.html.erb (2.9ms)
+  Rendered answers/new.html.erb within layouts/application (38.4ms)
+Completed 200 OK in 166ms (Views: 152.2ms | ActiveRecord: 0.8ms)
+
+
+Completed 200 OK in 152ms (Views: 115.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/answers/user_answer/12" for ::1 at 2019-12-06 03:26:29 +0900
+Processing by AnswersController#user_answer as HTML
+  Parameters: {"user_id"=>"12"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:88
+  Rendering answers/user_answer.html.erb within layouts/application
+  [1m[36mAnswer Load (0.8ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" ASC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/views/answers/user_answer.html.erb:8
+  [1m[36mAnswer Load (0.4ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."user_id" = ?[0m  [["user_id", 12]]
+  ↳ app/views/answers/user_answer.html.erb:12
+  Rendered answers/user_answer.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 52ms (Views: 46.1ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/answers/new/12/4/false" for ::1 at 2019-12-06 03:26:41 +0900
+Processing by AnswersController#create as */*
+  Parameters: {"id"=>"12", "ansnum"=>"4", "result"=>"false"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:46
+Unpermitted parameter: :id
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/answers_controller.rb:47
+  [1m[36mAnswer Create (0.8ms)[0m  [1m[32mINSERT INTO "answers" ("created_at", "updated_at", "user_id", "result", "ansnum") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2019-12-05 18:26:41.466206"], ["updated_at", "2019-12-05 18:26:41.466206"], ["user_id", 12], ["result", 0], ["ansnum", 4]]
+  ↳ app/controllers/answers_controller.rb:47
+  [1m[35m (2.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/answers_controller.rb:47
+  [1m[36mAnswer Load (0.3ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:50
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+Started GET "/answers/new/12/5" for ::1 at 2019-12-06 03:26:41 +0900
+  ↳ app/controllers/answers_controller.rb:53
+Processing by AnswersController#new as HTML
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  Parameters: {"id"=>"12", "ansnum"=>"5"}
+  ↳ app/controllers/answers_controller.rb:53
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+Redirected to http://localhost:3000/answers/new/12/5
+  ↳ app/controllers/answers_controller.rb:22
+Completed 302 Found in 26ms (ActiveRecord: 4.6ms)
+
+
+  [1m[36mAnswer Load (0.2ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:23
+  [1m[36mCACHE Answer Load (0.0ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:23
+Started GET "/answers/new/12/5" for ::1 at 2019-12-06 03:26:41 +0900
+Processing by AnswersController#new as */*
+  Rendering answers/new.html.erb within layouts/application
+  Parameters: {"id"=>"12", "ansnum"=>"5"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:22
+  [1m[36mAnswer Load (0.1ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:23
+  [1m[36mCACHE Answer Load (0.0ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:23
+  Rendered answers/_form2.html.erb (3.3ms)
+  Rendered answers/new.html.erb within layouts/application (66.7ms)
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form2.html.erb (3.7ms)
+  Rendered answers/new.html.erb within layouts/application (32.4ms)
+Completed 200 OK in 214ms (Views: 197.6ms | ActiveRecord: 0.9ms)
+
+
+Completed 200 OK in 182ms (Views: 146.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/answers/user_answer/12" for ::1 at 2019-12-06 03:26:44 +0900
+Processing by AnswersController#user_answer as HTML
+  Parameters: {"user_id"=>"12"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:88
+  Rendering answers/user_answer.html.erb within layouts/application
+  [1m[36mAnswer Load (0.2ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" ASC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/views/answers/user_answer.html.erb:8
+  [1m[36mAnswer Load (0.4ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."user_id" = ?[0m  [["user_id", 12]]
+  ↳ app/views/answers/user_answer.html.erb:12
+  Rendered answers/user_answer.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 53ms (Views: 46.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/answers" for ::1 at 2019-12-06 03:27:05 +0900
+Processing by AnswersController#index as HTML
+  Rendering answers/index.html.erb within layouts/application
+  [1m[36mAnswer Load (0.5ms)[0m  [1m[34mSELECT "answers".* FROM "answers"[0m
+  ↳ app/views/answers/index.html.erb:13
+  Rendered answers/index.html.erb within layouts/application (23.5ms)
+Completed 200 OK in 78ms (Views: 74.8ms | ActiveRecord: 0.5ms)
+
+
+Started DELETE "/answers/308" for ::1 at 2019-12-06 03:27:07 +0900
+Processing by AnswersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"s22kOWYAHFlNzBSEF5yy0z6+PgdDblZ0qOCwgvswb27pyzl6qZVPxUE31EWtxC5iwJAV1Oxjb0UAAFzN9Y8rTQ==", "id"=>"308"}
+  [1m[36mAnswer Load (0.4ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."id" = ? LIMIT ?[0m  [["id", 308], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:94
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/answers_controller.rb:80
+  [1m[36mAnswer Destroy (0.7ms)[0m  [1m[31mDELETE FROM "answers" WHERE "answers"."id" = ?[0m  [["id", 308]]
+  ↳ app/controllers/answers_controller.rb:80
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/answers_controller.rb:80
+Redirected to http://localhost:3000/answers
+Completed 302 Found in 11ms (ActiveRecord: 2.8ms)
+
+
+Started GET "/answers" for ::1 at 2019-12-06 03:27:08 +0900
+Processing by AnswersController#index as HTML
+  Rendering answers/index.html.erb within layouts/application
+  [1m[36mAnswer Load (0.8ms)[0m  [1m[34mSELECT "answers".* FROM "answers"[0m
+  ↳ app/views/answers/index.html.erb:13
+  Rendered answers/index.html.erb within layouts/application (35.4ms)
+Completed 200 OK in 91ms (Views: 86.3ms | ActiveRecord: 0.8ms)
+
+
+Started DELETE "/answers/309" for ::1 at 2019-12-06 03:27:09 +0900
+Processing by AnswersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"N036k3PpxcIQg6rDMf7eJDCWPzzxG5Z87uBtklW2lL1t62fQvHyWXhx4agKLpkKVzrgU714Wr01GAIHdWwnQng==", "id"=>"309"}
+  [1m[36mAnswer Load (0.2ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."id" = ? LIMIT ?[0m  [["id", 309], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:94
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/answers_controller.rb:80
+  [1m[36mAnswer Destroy (0.7ms)[0m  [1m[31mDELETE FROM "answers" WHERE "answers"."id" = ?[0m  [["id", 309]]
+  ↳ app/controllers/answers_controller.rb:80
+  [1m[35m (2.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/answers_controller.rb:80
+Redirected to http://localhost:3000/answers
+Completed 302 Found in 11ms (ActiveRecord: 3.7ms)
+
+
+Started GET "/answers" for ::1 at 2019-12-06 03:27:09 +0900
+Processing by AnswersController#index as HTML
+  Rendering answers/index.html.erb within layouts/application
+  [1m[36mAnswer Load (0.6ms)[0m  [1m[34mSELECT "answers".* FROM "answers"[0m
+  ↳ app/views/answers/index.html.erb:13
+  Rendered answers/index.html.erb within layouts/application (24.0ms)
+Completed 200 OK in 71ms (Views: 68.0ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/answers/310" for ::1 at 2019-12-06 03:27:11 +0900
+Processing by AnswersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"d1meAQ1qWasmzIxKIMYBoVxg53G7T49b0F6qPQfm7sEt/wNCwv8KNyo3TIuanp0Qok7MohRCtmp4vkZyCVmq4g==", "id"=>"310"}
+  [1m[36mAnswer Load (0.2ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."id" = ? LIMIT ?[0m  [["id", 310], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:94
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/answers_controller.rb:80
+  [1m[36mAnswer Destroy (0.7ms)[0m  [1m[31mDELETE FROM "answers" WHERE "answers"."id" = ?[0m  [["id", 310]]
+  ↳ app/controllers/answers_controller.rb:80
+  [1m[35m (3.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/answers_controller.rb:80
+Redirected to http://localhost:3000/answers
+Completed 302 Found in 12ms (ActiveRecord: 4.8ms)
+
+
+Started GET "/answers" for ::1 at 2019-12-06 03:27:11 +0900
+Processing by AnswersController#index as HTML
+  Rendering answers/index.html.erb within layouts/application
+  [1m[36mAnswer Load (0.6ms)[0m  [1m[34mSELECT "answers".* FROM "answers"[0m
+  ↳ app/views/answers/index.html.erb:13
+  Rendered answers/index.html.erb within layouts/application (28.8ms)
+Completed 200 OK in 77ms (Views: 73.8ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/answers/311" for ::1 at 2019-12-06 03:27:12 +0900
+Processing by AnswersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"Z1U41kOgBvh3uItfFc6Wz0e8TcaJTLMUnyvk9nG9EPI986WVjDVVZHtDS56vlgp+uZJmFSZBiiU3ywi5fwJU0Q==", "id"=>"311"}
+  [1m[36mAnswer Load (0.2ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."id" = ? LIMIT ?[0m  [["id", 311], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:94
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/answers_controller.rb:80
+  [1m[36mAnswer Destroy (1.0ms)[0m  [1m[31mDELETE FROM "answers" WHERE "answers"."id" = ?[0m  [["id", 311]]
+  ↳ app/controllers/answers_controller.rb:80
+  [1m[35m (2.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/answers_controller.rb:80
+Redirected to http://localhost:3000/answers
+Completed 302 Found in 8ms (ActiveRecord: 3.7ms)
+
+
+Started GET "/answers" for ::1 at 2019-12-06 03:27:12 +0900
+Processing by AnswersController#index as HTML
+  Rendering answers/index.html.erb within layouts/application
+  [1m[36mAnswer Load (0.6ms)[0m  [1m[34mSELECT "answers".* FROM "answers"[0m
+  ↳ app/views/answers/index.html.erb:13
+  Rendered answers/index.html.erb within layouts/application (24.1ms)
+Completed 200 OK in 72ms (Views: 69.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/answers/user_answer/12" for ::1 at 2019-12-06 03:27:13 +0900
+Processing by AnswersController#user_answer as HTML
+  Parameters: {"user_id"=>"12"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:88
+  Rendering answers/user_answer.html.erb within layouts/application
+  [1m[36mAnswer Load (0.2ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" ASC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/views/answers/user_answer.html.erb:8
+  [1m[36mAnswer Load (0.1ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."user_id" = ?[0m  [["user_id", 12]]
+  ↳ app/views/answers/user_answer.html.erb:12
+  Rendered answers/user_answer.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 50ms (Views: 45.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/answers/user_answer/12" for ::1 at 2019-12-06 03:27:14 +0900
+Processing by AnswersController#user_answer as HTML
+  Parameters: {"user_id"=>"12"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:88
+  Rendering answers/user_answer.html.erb within layouts/application
+  [1m[36mAnswer Load (0.2ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" ASC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/views/answers/user_answer.html.erb:8
+  [1m[36mAnswer Load (0.1ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."user_id" = ?[0m  [["user_id", 12]]
+  ↳ app/views/answers/user_answer.html.erb:12
+  Rendered answers/user_answer.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 54ms (Views: 50.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/answers/383" for ::1 at 2019-12-06 03:27:16 +0900
+Processing by AnswersController#show as HTML
+  Parameters: {"id"=>"383"}
+  [1m[36mAnswer Load (0.2ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."id" = ? LIMIT ?[0m  [["id", 383], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:94
+  [1m[36mCACHE Answer Load (0.0ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."id" = ? LIMIT ?[0m  [["id", 383], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:14
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:15
+  Rendering answers/show.html.erb within layouts/application
+  Rendered answers/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 50ms (Views: 41.6ms | ActiveRecord: 0.4ms)
+
+
+Started DELETE "/answers/383" for ::1 at 2019-12-06 03:27:22 +0900
+Processing by AnswersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"6mZluDb7TTns/HPIx4XliICxMCt4D7P12+WxjW9H9kewwPj7+W4epeAHswl93Xk5fp8b+NcCisRzBV3CYfiyZA==", "id"=>"383"}
+  [1m[36mAnswer Load (0.3ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."id" = ? LIMIT ?[0m  [["id", 383], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:94
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/answers_controller.rb:80
+  [1m[36mAnswer Destroy (1.0ms)[0m  [1m[31mDELETE FROM "answers" WHERE "answers"."id" = ?[0m  [["id", 383]]
+  ↳ app/controllers/answers_controller.rb:80
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/answers_controller.rb:80
+Redirected to http://localhost:3000/answers
+Completed 302 Found in 9ms (ActiveRecord: 3.0ms)
+
+
+Started GET "/answers" for ::1 at 2019-12-06 03:27:22 +0900
+Processing by AnswersController#index as HTML
+  Rendering answers/index.html.erb within layouts/application
+  [1m[36mAnswer Load (0.5ms)[0m  [1m[34mSELECT "answers".* FROM "answers"[0m
+  ↳ app/views/answers/index.html.erb:13
+  Rendered answers/index.html.erb within layouts/application (24.0ms)
+Completed 200 OK in 63ms (Views: 59.1ms | ActiveRecord: 0.5ms)
+
+
+Started DELETE "/answers/382" for ::1 at 2019-12-06 03:27:25 +0900
+Processing by AnswersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"cyafG6jvZ1GhpoB5kPTAJtfk2zp43zzKE46aJe3IDa4pgAJYZ3o0za1dQLgqrFyXKcrw6dfSBfu7bnZq43dJjQ==", "id"=>"382"}
+  [1m[36mAnswer Load (0.2ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."id" = ? LIMIT ?[0m  [["id", 382], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:94
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/answers_controller.rb:80
+  [1m[36mAnswer Destroy (1.1ms)[0m  [1m[31mDELETE FROM "answers" WHERE "answers"."id" = ?[0m  [["id", 382]]
+  ↳ app/controllers/answers_controller.rb:80
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/answers_controller.rb:80
+Redirected to http://localhost:3000/answers
+Completed 302 Found in 8ms (ActiveRecord: 3.4ms)
+
+
+Started GET "/answers" for ::1 at 2019-12-06 03:27:25 +0900
+Processing by AnswersController#index as HTML
+  Rendering answers/index.html.erb within layouts/application
+  [1m[36mAnswer Load (0.5ms)[0m  [1m[34mSELECT "answers".* FROM "answers"[0m
+  ↳ app/views/answers/index.html.erb:13
+  Rendered answers/index.html.erb within layouts/application (22.7ms)
+Completed 200 OK in 75ms (Views: 71.4ms | ActiveRecord: 0.5ms)
+
+
+Started DELETE "/answers/381" for ::1 at 2019-12-06 03:27:27 +0900
+Processing by AnswersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"7CAGWnswvErrTjXTvq2OyeXDJgNRe9zbG97KQQX6W+e2hpsZtKXv1ue19RIE9RJ4G+0N0P525eqzPiYOC0UfxA==", "id"=>"381"}
+  [1m[36mAnswer Load (0.2ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."id" = ? LIMIT ?[0m  [["id", 381], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:94
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/answers_controller.rb:80
+  [1m[36mAnswer Destroy (0.6ms)[0m  [1m[31mDELETE FROM "answers" WHERE "answers"."id" = ?[0m  [["id", 381]]
+  ↳ app/controllers/answers_controller.rb:80
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/answers_controller.rb:80
+Redirected to http://localhost:3000/answers
+Completed 302 Found in 10ms (ActiveRecord: 3.1ms)
+
+
+Started GET "/answers" for ::1 at 2019-12-06 03:27:27 +0900
+Processing by AnswersController#index as HTML
+  Rendering answers/index.html.erb within layouts/application
+  [1m[36mAnswer Load (0.5ms)[0m  [1m[34mSELECT "answers".* FROM "answers"[0m
+  ↳ app/views/answers/index.html.erb:13
+  Rendered answers/index.html.erb within layouts/application (22.8ms)
+Completed 200 OK in 78ms (Views: 74.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/answers/new/12/5" for ::1 at 2019-12-06 03:27:29 +0900
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"12", "ansnum"=>"5"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:22
+  [1m[36mAnswer Load (0.1ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:23
+  [1m[36mCACHE Answer Load (0.0ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:23
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form2.html.erb (3.5ms)
+  Rendered answers/new.html.erb within layouts/application (7.9ms)
+Completed 200 OK in 64ms (Views: 54.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/answers/user_answer/12" for ::1 at 2019-12-06 03:27:30 +0900
+Processing by AnswersController#user_answer as HTML
+  Parameters: {"user_id"=>"12"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:88
+  Rendering answers/user_answer.html.erb within layouts/application
+  [1m[36mAnswer Load (0.2ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" ASC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/views/answers/user_answer.html.erb:8
+  [1m[36mAnswer Load (0.2ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."user_id" = ?[0m  [["user_id", 12]]
+  ↳ app/views/answers/user_answer.html.erb:12
+  Rendered answers/user_answer.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 57ms (Views: 51.6ms | ActiveRecord: 0.5ms)
+
+
+Started DELETE "/answers/380" for ::1 at 2019-12-06 03:27:34 +0900
+Processing by AnswersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"i324YoFAxq7TbxuVe6w1uICiybbInNrVu5ZXYQ8jwR/R2yUhTtWVMt+U21TB9KkJfoziZWeR4+QTdrsuAZyFPA==", "id"=>"380"}
+  [1m[36mAnswer Load (0.6ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."id" = ? LIMIT ?[0m  [["id", 380], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:94
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/answers_controller.rb:80
+  [1m[36mAnswer Destroy (0.6ms)[0m  [1m[31mDELETE FROM "answers" WHERE "answers"."id" = ?[0m  [["id", 380]]
+  ↳ app/controllers/answers_controller.rb:80
+  [1m[35m (4.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/answers_controller.rb:80
+Redirected to http://localhost:3000/answers
+Completed 302 Found in 12ms (ActiveRecord: 5.7ms)
+
+
+Started GET "/answers" for ::1 at 2019-12-06 03:27:34 +0900
+Processing by AnswersController#index as HTML
+  Rendering answers/index.html.erb within layouts/application
+  [1m[36mAnswer Load (0.5ms)[0m  [1m[34mSELECT "answers".* FROM "answers"[0m
+  ↳ app/views/answers/index.html.erb:13
+  Rendered answers/index.html.erb within layouts/application (29.8ms)
+Completed 200 OK in 78ms (Views: 73.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/answers/new/12/1" for ::1 at 2019-12-06 03:27:38 +0900
+Processing by AnswersController#new as HTML
+  Parameters: {"id"=>"12", "ansnum"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:22
+  [1m[36mAnswer Load (0.2ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:23
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form.html.erb (4.0ms)
+  Rendered answers/new.html.erb within layouts/application (10.1ms)
+Completed 200 OK in 62ms (Views: 52.4ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/answers/new/12/1/true" for ::1 at 2019-12-06 03:27:44 +0900
+Processing by AnswersController#create as */*
+  Parameters: {"id"=>"12", "ansnum"=>"1", "result"=>"true"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:46
+Unpermitted parameter: :id
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/answers_controller.rb:47
+  [1m[36mAnswer Create (2.2ms)[0m  [1m[32mINSERT INTO "answers" ("created_at", "updated_at", "user_id", "result", "ansnum") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2019-12-05 18:27:44.018644"], ["updated_at", "2019-12-05 18:27:44.018644"], ["user_id", 12], ["result", 1], ["ansnum", 1]]
+  ↳ app/controllers/answers_controller.rb:47
+  [1m[35m (4.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/answers_controller.rb:47
+  [1m[36mAnswer Load (0.3ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+Started GET "/answers/new/12/2" for ::1 at 2019-12-06 03:27:44 +0900
+  ↳ app/controllers/answers_controller.rb:50
+Processing by AnswersController#new as HTML
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  Parameters: {"id"=>"12", "ansnum"=>"2"}
+  ↳ app/controllers/answers_controller.rb:53
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/answers_controller.rb:22
+  ↳ app/controllers/answers_controller.rb:53
+  [1m[36mAnswer Load (0.2ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+Redirected to http://localhost:3000/answers/new/12/2
+  ↳ app/controllers/answers_controller.rb:23
+Completed 302 Found in 43ms (ActiveRecord: 7.0ms)
+
+
+  [1m[36mCACHE Answer Load (0.0ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:23
+  Rendering answers/new.html.erb within layouts/application
+Started GET "/answers/new/12/2" for ::1 at 2019-12-06 03:27:44 +0900
+Processing by AnswersController#new as */*
+  Parameters: {"id"=>"12", "ansnum"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:22
+  Rendered answers/_form2.html.erb (3.1ms)
+  [1m[36mAnswer Load (0.1ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  Rendered answers/new.html.erb within layouts/application (12.9ms)
+  ↳ app/controllers/answers_controller.rb:23
+  [1m[36mCACHE Answer Load (0.0ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" DESC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:23
+  Rendering answers/new.html.erb within layouts/application
+  Rendered answers/_form2.html.erb (4.1ms)
+  Rendered answers/new.html.erb within layouts/application (29.9ms)
+Completed 200 OK in 192ms (Views: 178.6ms | ActiveRecord: 0.4ms)
+
+
+Completed 200 OK in 410ms (Views: 353.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/answers/user_answer/12" for ::1 at 2019-12-06 03:27:46 +0900
+Processing by AnswersController#user_answer as HTML
+  Parameters: {"user_id"=>"12"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/answers_controller.rb:88
+  Rendering answers/user_answer.html.erb within layouts/application
+  [1m[36mAnswer Load (0.2ms)[0m  [1m[34mSELECT  "answers".* FROM "answers" WHERE "answers"."user_id" = ? ORDER BY "answers"."id" ASC LIMIT ?[0m  [["user_id", 12], ["LIMIT", 1]]
+  ↳ app/views/answers/user_answer.html.erb:8
+  [1m[36mAnswer Load (0.2ms)[0m  [1m[34mSELECT "answers".* FROM "answers" WHERE "answers"."user_id" = ?[0m  [["user_id", 12]]
+  ↳ app/views/answers/user_answer.html.erb:12
+  Rendered answers/user_answer.html.erb within layouts/application (4.8ms)
+Completed 200 OK in 40ms (Views: 34.9ms | ActiveRecord: 0.6ms)
+
+
