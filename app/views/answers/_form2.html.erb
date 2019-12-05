@@ -1,4 +1,4 @@
-<%= form_with(url: user_create_answer_path(@user.id,result: true),model: answer,local: true, html:{id:"form"}) do |form| %>
+<%= form_with(url: user_create_answer_path(@user.id,result: true,score:@score),model: answer,local: true, html:{id:"form"}) do |form| %>
   <% if answer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
@@ -10,6 +10,12 @@
       </ul>
     </div>
   <% end %>
+  <% if @test_type == "B" %>
+        <h2>現在の獲得点数: <%= @score %>点!!!すごい！</h2>
+  <% elsif @test_type == "C" %>
+        <h2>現在の失点合計: <%= @score %>点です。イマイチです</h2>
+  <%end%>
+  <h2><%= @test_type %></h2>
   <div>
     <%= image_tag '/assets/gray.png', :size => "20x20",id:"questionimg" %>
     <p style="display: inline;">を選んでください</p>
@@ -22,7 +28,8 @@
   <p id = "result">result</p>
   <p hidden id="user_id"><%= @user.id %></p>
   <p hidden id = "ansnum"><%= @ansnum%></p>
-
+  <p hidden id = "score"><%= @score %></p>
+  <p hidden id ="test_type"<%= @test_type%></p>
 
   <script>
     var cards = ["1","2","3","4","5","6","7","8","9","10","11","12"];
@@ -38,6 +45,8 @@
     var user_id;
     var ansnum;
     var attempt = 0;
+    var score = Number($("#score").text());
+    var test_type = $("#test_type").text();
     function returnRndIdx(){
       for(var i = opts.length -1 ; i > 0; i--){
         const j = Math.floor(Math.random()*(i + 1));
@@ -98,12 +107,18 @@
           if(attempt == 0){
           $("#result").text("correct");
             result = true;
-            $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}`);
-            window.location.replace(`http://localhost:3000/answers/new/${user_id}/${ansnum+1}`);  
+            if(test_type == "B"){
+              $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}/${score+10}`);
+              window.location.replace(`http://localhost:3000/answers/new/${user_id}/${ansnum+1}`); 
+            }
+            else if(test_type == "C"){
+              $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}/${score+10}`);
+              window.location.replace(`http://localhost:3000/answers/new/${user_id}/${ansnum+1}`);               
+            }
           }
           else{
             result =false;
-            $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}`);
+            $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}/${score - 10}`);
             window.location.replace(`http://localhost:3000/answers/new/${user_id}/${ansnum+1}`);  
           }
         }
@@ -185,8 +200,4 @@
       $("#picture3").attr("src","/assets/gray.png");
     }
   </script>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

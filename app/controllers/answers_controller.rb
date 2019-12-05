@@ -21,6 +21,10 @@ class AnswersController < ApplicationController
     @answer = Answer.new
     @user = User.find(params[:id])
     @user.answers.last.nil? ? @ansnum = 0 : @ansnum = @user.answers.last.ansnum
+    #unless @user.nil?
+    @user.answers.last.nil? ? @score = 0 : @score = @user.answers.last.score
+    #@score = 0
+    #end
     case @user.student_id%3
     when 0
       @test_type = "A"
@@ -98,6 +102,6 @@ class AnswersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
-      params.permit(:result,:ansnum)
+      params.permit(:result,:ansnum,:score)
     end
 end

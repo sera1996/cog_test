@@ -13,6 +13,11 @@
     <th>回答番号</th>
     <td><%= @answer.ansnum %></td>
 </tr>
+<br>
+<tr>
+    <th>スコア</th>
+    <td><%= @answer.score %></td>
+</tr>
 <p><%= @answer.created_at %></p>
 <p><%= @answer.result %></p>
 <%= link_to 'Edit', edit_answer_path(@answer) %> |

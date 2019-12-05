@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_05_115625) do
+ActiveRecord::Schema.define(version: 2019_12_05_185027) do
 
   create_table "answers", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2019_12_05_115625) do
     t.integer "user_id"
     t.boolean "result"
     t.integer "ansnum"
+    t.integer "score", default: 0
   end
 
   create_table "users", force: :cascade do |t|
@@ -28,7 +29,6 @@ ActiveRecord::Schema.define(version: 2019_12_05_115625) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "student_id"
-    t.integer "score", default: 0
   end
 
 end
