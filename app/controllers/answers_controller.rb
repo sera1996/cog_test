@@ -23,6 +23,7 @@ class AnswersController < ApplicationController
     @user.answers.last.nil? ? @ansnum = 0 : @ansnum = @user.answers.last.ansnum
     #unless @user.nil?
     @user.answers.last.nil? ? @score = 0 : @score = @user.answers.last.score
+    @user.answers.last.nil? ? @last_result = nil : @last_result = @user.answers.last.result
     #@score = 0
     #end
     case @user.student_id%3

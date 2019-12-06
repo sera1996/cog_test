@@ -11,18 +11,22 @@
     </div>
   <% end %>
   <% if @test_type == "B" %>
-        <h2>現在の獲得点数: <%= @score %>点！おめでとうございます</h2>
+        <% if @last_result == "true">
+          <div id= "iine"><%= image_tag '/assets/iine.gif', :size => "50x30" %></div>
+        <% end %>
+        <h2>現在の獲得点数: <div id="total_score_b"><%= @score %></div>点！その調子です</h2>
   <% elsif @test_type == "C" %>
-        <h2>現在の失点合計: <%= @score %>点 頑張りましょう</h2>
+        <div id= "iine"><%= image_tag '/assets/dame.gif', :size => "50x30" %></div>
+        <h2>現在の失点合計: <div id="total_score_c"><%= @score %></div>点</h2>
   <%end%>
+  <h2 hidden id="typetest"><%= @test_type %></h2>
   <p id ="question">を選んでください</p>
   <%= image_tag '/assets/gray.png', :size => "150x150",id:"picture1" %>
   <%= image_tag '/assets/gray.png', :size => "150x150", id:"picture2" %>
-  <p id = "result">result</p>
+  <p hidden id = "result">result</p>
   <p hidden id="user_id"><%= @user.id %></p>
   <p hidden id = "ansnum"><%= @ansnum%></p>
   <p hidden id = "score"><%= @score %></p>
-  <p hidden id = "test_type"><%= @test_type %></p>
 
 
   <script>
@@ -40,7 +44,7 @@
     var ansnum;
     var attempt = 0;
     var score = Number($("#score").text());
-    var test_type = $("#test_type").text();
+    var test_type = $("#typetest").text();
     function returnRndIdx(){
       rndOpt = Math.floor(Math.random()*2);
       if(rndOpt == 0){
@@ -57,6 +61,10 @@
       LoadPic(stepCnt);
       answer = cards[Math.floor(Math.random()*4)+2];
       $("#question").text(`${answer}を選んでください`);
+      $("#total_score_b").css("color","green");
+      $("#total_score_b").css("display","inline");
+      $("#total_score_c").css("color","red");
+      $("#total_score_c").css("display","inline");
     })
 
     $("#picture1").click(function(){
@@ -168,8 +176,4 @@
 
     }
   </script>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
