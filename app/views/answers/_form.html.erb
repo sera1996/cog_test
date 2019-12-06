@@ -11,19 +11,24 @@
     </div>
   <% end %>
   <% if @test_type == "B" %>
-        <% if @last_result == "true">
-          <div id= "iine"><%= image_tag '/assets/iine.gif', :size => "50x30" %></div>
+        <% if @last_result == true %>
+          <h2 id="total_score_b">正解です！おめでとうございます。</h2>
+          <%= image_tag '/assets/iine.gif', :size => "50x30" %>
         <% end %>
-        <h2>現在の獲得点数: <div id="total_score_b"><%= @score %></div>点！その調子です</h2>
   <% elsif @test_type == "C" %>
-        <div id= "iine"><%= image_tag '/assets/dame.gif', :size => "50x30" %></div>
-        <h2>現在の失点合計: <div id="total_score_c"><%= @score %></div>点</h2>
+        <% if @last_result == false %>
+          <div id= "iine"><%= image_tag '/assets/dame.gif', :size => "50x30" %></div>
+          <h2>現在の失点合計: <div id="total_score_c"><%= @score %></div>点</h2>
+        <% end %>
   <%end%>
   <h2 hidden id="typetest"><%= @test_type %></h2>
   <p id ="question">を選んでください</p>
-  <%= image_tag '/assets/gray.png', :size => "150x150",id:"picture1" %>
-  <%= image_tag '/assets/gray.png', :size => "150x150", id:"picture2" %>
-  <p hidden id = "result">result</p>
+  <p id = "stepCnt"></p>
+  <div>
+    <%= image_tag '/assets/gray.png', :size => "150x150",id:"picture1" %>
+    <%= image_tag '/assets/gray.png', :size => "150x150", id:"picture2" %>
+  </div>  
+  <p id = "result"></p>
   <p hidden id="user_id"><%= @user.id %></p>
   <p hidden id = "ansnum"><%= @ansnum%></p>
   <p hidden id = "score"><%= @score %></p>
@@ -78,7 +83,9 @@
     })
 
     function LoadPic($stepCnt){
-      returnRndIdx();
+      if(attempt == 0){
+        returnRndIdx();
+      }
       if($stepCnt == 0){
         options[rndOpt] = cards[0];
         options[othrOpt] = cards[1];
@@ -100,25 +107,13 @@
           if(attempt == 0){
             $("#result").text("correct");
             result = true;
-            if(test_type == "B"){
-              $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}/${score+10}`);
-              window.location.replace(`http://localhost:3000/answers/new/${user_id}/${ansnum+1}`);
-            }
-          else if(test_type == "C"){
-            $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}/${score}`);
+            $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}/${score+1}`);
             window.location.replace(`http://localhost:3000/answers/new/${user_id}/${ansnum+1}`);
-          }
           }
           else{
             result =false;
-            if(test_type == "B"){
-              $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}/${score}`);
-              window.location.replace(`http://localhost:3000/answers/new/${user_id}/${ansnum+1}`); 
-            }
-          else if(test_type == "C"){
-            $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}/${score - 10}`);
+            $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}/${score}`);
             window.location.replace(`http://localhost:3000/answers/new/${user_id}/${ansnum+1}`); 
-          }
           }
         }
         else{
