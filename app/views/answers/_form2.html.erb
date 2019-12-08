@@ -18,11 +18,10 @@
           <%= image_tag '/assets/iine.gif', :size => "50x30" %>
         <% end %>
   <% elsif @test_type == "C" %>
-        <% if @last_result == true %>
+        <% if @last_result == false %>
+          <h2 id="total_score_c">不正解です。頑張ってください</h2>
           <%= image_tag '/assets/dame.gif', :size => "50x30" %>
         <% end %>
-        <div id= "iine"><%= image_tag '/assets/dame.gif', :size => "50x30" %></div>
-        <h2>現在の失点合計: <div id="total_score_c"><%= @score %></div>点</h2>
   <%end%>
   </div>
   <h2 hidden id="typetest"><%= @test_type %></h2>
@@ -129,14 +128,23 @@
           if(attempt == 0){
           $("#result").text("correct");
             result = true;
-            $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}/${score+1}`);
-            window.location.replace(`http://localhost:3000/answers/new/${user_id}/${ansnum+1}`); 
-            
+            $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}/${score+1}`)
+            .done(function() {
+              window.location.replace(`http://localhost:3000/answers/new/${user_id}/${ansnum+1}`);
+            })
+            .fail(function() {
+              alert("error");
+            });
           }
           else{
             result =false;
-            $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}/${score-1}`);
-            window.location.replace(`http://localhost:3000/answers/new/${user_id}/${ansnum+1}`);              
+            $.post(`http://localhost:3000/answers/new/${user_id}/${ansnum}/${result}/${score}`)
+            .done(function() {
+              window.location.replace(`http://localhost:3000/answers/new/${user_id}/${ansnum+1}`);
+            })
+            .fail(function() {
+              alert("error");
+            });            
           }
         }
         else{

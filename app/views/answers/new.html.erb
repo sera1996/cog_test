@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h1>新規回答</h1>
+<h2>氏名: <%= @user.last_name %>　さん</h2>
 <h2><%= params[:ansnum] %>/42問目の回答です</h2>
 <% if params[:ansnum].to_i % 3 == 1 %>
     <%= render 'form', answer: @answer %>
@@ -7,4 +8,4 @@
     <%= render 'form2', answer: @answer %>
 <% end %>
 
-<%= link_to 'Back', answers_path %>
+<%= link_to 'ユーザー一覧画面', users_url %>

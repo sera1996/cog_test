@@ -26,6 +26,12 @@ class AnswersController < ApplicationController
     @user.answers.last.nil? ? @last_result = nil : @last_result = @user.answers.last.result
     #@score = 0
     #end
+
+    if params[:ansnum] == "1" && !@user.answers.last.nil?
+        redirect_to user_new_answer_url(params[:id],@user.answers.last.ansnum + 1) 
+    end
+
+
     case @user.student_id%3
     when 0
       @test_type = "A"
