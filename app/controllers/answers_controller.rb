@@ -63,7 +63,7 @@ class AnswersController < ApplicationController
     respond_to do |format|
       if @answer.save
         #format.html { redirect_to user_new_answer_path(@user.id,ansnum:next_ans+1), notice: 'Answer was successfully created.' }
-        format.html { redirect_to "https://abenew.co.jp/answers/new/#{@user.id}/#{next_ans+1}" notice: 'Answer was successfully created.' }
+        #format.html { redirect_to "https://abenew.co.jp/answers/new/#{@user.id}/#{next_ans+1}" notice: 'Answer was successfully created.' }
         format.json { render :show, status: :created, location: @answer }
       else
         format.html { render :new }
@@ -100,6 +100,7 @@ class AnswersController < ApplicationController
     @user = User.find(params[:user_id])
     @answers = @user.answers.all
   end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_answer
